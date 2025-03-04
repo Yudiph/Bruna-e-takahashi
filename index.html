@@ -14,6 +14,7 @@
             background-position: center;
             color: #333;
             overflow: hidden;
+            margin: 0;
         }
         img {
             max-width: 100%;
@@ -62,6 +63,16 @@
             border-radius: 10px;
             display: inline-block;
         }
+
+        /* Ajuste para permitir rolagem após esconder a tela inicial */
+        body.scrolled {
+            overflow: auto; /* Ativa a rolagem da página */
+        }
+
+        #main-content {
+            margin-top: 20px;
+            transition: opacity 1s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -80,9 +91,11 @@
     <div id="love-text">Amor, você é a parte mais linda da minha vida. Criei este espaço para que, sempre que abrir, lembre-se de que cada hora, minuto e segundo ao seu lado são especiais. O tempo passa, mas meu amor por você só cresce. Que este site seja uma pequena lembrança do quanto eu te amo💖.</div>
 
     <!-- Conteúdo do site -->
-    <img src="https://i.imgur.com/0EWZQUv.png" alt="Nosso Amor">
-    <h2>Estamos juntos há:</h2>
-    <div id="timer"></div>
+    <div id="main-content">
+        <img src="https://i.imgur.com/0EWZQUv.png" alt="Nosso Amor">
+        <h2>Estamos juntos há:</h2>
+        <div id="timer"></div>
+    </div>
 
     <script>
         function atualizarTempo() {
@@ -102,9 +115,10 @@
 
         function openSite() {
             document.getElementById("heart-screen").classList.add("hide");
+
             setTimeout(() => {
-                document.getElementById("heart-screen").style.display = "none";
                 document.getElementById("background-music").play();
+                document.body.classList.add('scrolled'); // Permite rolagem
             }, 1000);
         }
     </script>
